@@ -1,5 +1,10 @@
  //Let's display our answers into the HTML Document:
  const answer1 = document.querySelector('.answer-1');
+ const answer2 = document.querySelector('.answer-2');
+ const answer3 = document.querySelector('.answer-3');
+ const answer4 = document.querySelector('.answer-4');
+ const answer5 = document.querySelector('.answer-5');
+ const answer6 = document.querySelector('.answer-6');
 
  
  //Some data we can work with:
@@ -33,7 +38,23 @@
       return true; // this means that we keep it!
     } 
   });
+  // console.table(fifteen);
 
-  console.table(fifteen);
-//Next, work on displaying the array in the HTML doc:
-  // answer1.innerHTML = (`The answer is: ${fifteen}`);
+//Next, display the array in the HTML doc:
+  let filterOutput = JSON.stringify(fifteen);
+  answer1.innerHTML = `The answer is: <br> ${filterOutput}`;
+
+  ///////////////////////////////////////////////////////////////////////
+
+  //Array.prototype.map() - map will always return the same amount of items that you give it:
+  //2. Give us an array of the inventors' first and last names
+let fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+// console.log(fullNames);
+let mappedData = fullNames.join(", ")
+answer2.innerHTML = `The answer is: <br> ${mappedData}`;
+
+///////////////////////////////////////////////////////////////////////
+
+  //Array.prototype.sort()
+  //3. Sort the inventors by birthdate, oldest to youngest
+  
