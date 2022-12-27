@@ -5,6 +5,8 @@
  const answer4 = document.querySelector('.answer-4');
  const answer5 = document.querySelector('.answer-5');
  const answer6 = document.querySelector('.answer-6');
+ const answer7 = document.querySelector('.answer-7');
+ const answer8 = document.querySelector('.answer-8');
 
  
  //Some data we can work with:
@@ -30,7 +32,6 @@
   'Birrell, Augustine', 'Black Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'
  ];
 
-
 //  Array.prototype.filter()
 // 1. Filter the list of inventors from those who were born in the 1500's.
   const fifteen = inventors.filter(function(inventor){
@@ -41,20 +42,74 @@
   // console.table(fifteen);
 
 //Next, display the array in the HTML doc:
-  let filterOutput = JSON.stringify(fifteen);
+  const filterOutput = JSON.stringify(fifteen);
   answer1.innerHTML = `The answer is: <br> ${filterOutput}`;
 
   ///////////////////////////////////////////////////////////////////////
 
   //Array.prototype.map() - map will always return the same amount of items that you give it:
   //2. Give us an array of the inventors' first and last names
-let fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
 // console.log(fullNames);
-let mappedData = fullNames.join(", ")
+
+//Display inside HTML doc:
+const mappedData = fullNames.join(", ")
 answer2.innerHTML = `The answer is: <br> ${mappedData}`;
 
 ///////////////////////////////////////////////////////////////////////
 
   //Array.prototype.sort()
   //3. Sort the inventors by birthdate, oldest to youngest
-  
+  const ordered = inventors.sort(function(personA, personB){
+    if(personA.year > personB.year){
+      return 1; //by assigning a 1 or -1 it will bubble the names up/down until completed in numerical order
+    } else {
+      return -1;
+    }
+  })
+
+  //Example of arrow function with implicit return for same code as above:
+  // const ordered = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
+
+  // console.table(ordered);
+
+  //Display inside HTML doc:
+  const filteredOrder = JSON.stringify(ordered)
+  answer3.innerHTML = `The answer is: <br> ${filteredOrder}`
+
+///////////////////////////////////////////////////////////////////////
+//Array.prototype.reduce()
+//4. How many years did all the inventors live?
+const totalYears = inventors.reduce((total, inventor) => {
+  return total + (inventor.passed - inventor.year);
+}, 0); //the "0" is to give total a starting point so it doesn't show undefined
+
+// console.log(totalYears);
+
+//Display inside HTML doc:
+answer4.innerHTML = `The answer is: ${totalYears} years`;
+
+///////////////////////////////////////////////////////////////////////
+//Array.prototype.sort()
+//5. Sort the inventors by years lived
+const oldest = inventors.sort(function(a, b) {
+  const longestLived = a.passed - a.year;
+  const nextLongestLived = b.passed - b.year;
+
+  if(longestLived > nextLongestLived) {
+    return -1;
+  } else {
+    return 1
+  }
+})
+//in place of the if statement: return longestLived > nextLongestLived ? -1 : 1;
+console.log(oldest);
+
+//Display inside HTML doc:
+const oldestResults = JSON.stringify(oldest);
+answer5.innerHTML = `The answer is: <br> ${oldestResults}`;
+
+///////////////////////////////////////////////////////////////////////
+//Array.prototype.sort()
+// 6. Create a list of Boulevards in Paris that contain 'de' anywhere in the name.
+//https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
