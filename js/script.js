@@ -110,6 +110,35 @@ const oldestResults = JSON.stringify(oldest);
 answer5.innerHTML = `The answer is: <br> ${oldestResults}`;
 
 ///////////////////////////////////////////////////////////////////////
-//Array.prototype.sort()
+//Array.prototype.map() and .filter()
 // 6. Create a list of Boulevards in Paris that contain 'de' anywhere in the name.
 //https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+//From the DOM - connect to the location of the data you are needing:
+// const category = document.querySelector(".mw-category");
+
+//querySelector returns a Nodelist and map() isn't available function for that
+//wrap the data in Array.from() to turn it into an array format.
+//This is grabbing all the a links in the .mw-category section:
+// const links = Array.from(category.querySelectorAll("a"));
+
+//This will map through and get the data of the links, then filter them to return only
+//streetNames with "de":
+// const de = links
+//   .map(link => link.textContent)
+//   .filter(streetName => streetName.includes('de'));
+  
+  //These are the results from the console.log(de);
+  const streetResults = ["Boulevard de l'Amiral-Bruix", 'Boulevard des Capucines', 
+  'Boulevard de la Chapelle', 'Boulevard de Clichy', "Boulevard de l'Hôpital", 
+  'Boulevard des Italiens', 'Boulevard de la Madeleine', 'Boulevard de Magenta', 
+  'Boulevard Marguerite-de-Rochechouart', 'Boulevard de Sébastopol', 
+  'Boulevard de Strasbourg', 'Boulevard de la Zone']
+
+  // Here we are displaying the array in HTML, separated by comma:
+  const streetNamesDe = streetResults.join(', ')
+  answer6.innerHTML = `The answer is: <br> ${streetNamesDe}`;
+
+  ///////////////////////////////////////////////////////////////////////
+//Array.prototype.sort()
+//7. Sort the people alphabetically by last name.
