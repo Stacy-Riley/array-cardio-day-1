@@ -105,7 +105,7 @@ const oldest = inventors.sort(function(a, b) {
 //in place of the if statement: return longestLived > nextLongestLived ? -1 : 1;
 console.log(oldest);
 
-//Display inside HTML doc:
+//Display array in HTML doc:
 const oldestResults = JSON.stringify(oldest);
 answer5.innerHTML = `The answer is: <br> ${oldestResults}`;
 
@@ -142,3 +142,34 @@ answer5.innerHTML = `The answer is: <br> ${oldestResults}`;
   ///////////////////////////////////////////////////////////////////////
 //Array.prototype.sort()
 //7. Sort the people alphabetically by last name.
+const alpha = people.sort(function(firstWord, secondWord){
+  // const parts = lastName.split(", ");
+  const [aLast, aFirst] = firstWord.split(", ")
+  const [bLast, bFirst] = secondWord.split(", ")
+  return aLast > bLast ? 1 : -1;
+})
+//Returns an array sorted alphabetically by last name:
+const alphaResults = alpha.join('; ');
+answer7.innerHTML = `The answer is: <br> ${alphaResults}`;
+
+ ///////////////////////////////////////////////////////////////////////
+//Array.prototype.reduce()
+//8. Reduce exercise
+//Sum up the instances of each of these from the data array:
+const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 
+'walk', 'car', 'van', 'car', 'truck']
+
+const transportation = data.reduce(function(obj, item){
+  //Checking if the key exists and if it doesn't, begin the count at 0:
+  if(!obj[item]){
+    obj[item] = 0;
+  }
+  //This is incrementing the object as it finds more and returning it as an objects:
+  obj[item]++;
+  return obj;
+}, {});
+
+//Display an object in HTML:
+const transportationResults = Object.entries(transportation)
+console.log(transportationResults)
+answer8.innerHTML = `The answer is: <br> ${transportationResults}`
