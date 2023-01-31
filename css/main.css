@@ -17,12 +17,17 @@ h3 {
   margin: 0;
 }
 
-.max-width-wrapper {
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px; 
-  padding-right: 20px; 
-  padding-bottom: 20px;
+body {
   background-color: rgb(223, 210, 210);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  margin: 0;
+  width: 100%;
+}
+.max-width-wrapper {
+  margin-left: 0;
+  margin-right: 0;
+  width: 90%;
   }
